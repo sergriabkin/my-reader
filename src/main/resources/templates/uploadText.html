@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Upload Text - Parallel Texts Reader</title>
+</head>
+<body>
+<div th:replace="~{layout :: content}">
+    <h2>Upload Text</h2>
+    <form th:action="@{/uploadText}" th:object="${text}" method="post">
+        <div>
+            <label for="content">Text Content:</label>
+            <textarea id="content" name="content" th:text="*{content}"></textarea>
+        </div>
+        <div>
+            <label for="language">Language:</label>
+            <input type="text" id="language" name="language" th:value="*{language}" />
+        </div>
+        <div>
+            <button type="submit">Upload</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

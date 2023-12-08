@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Parallel Texts Reader - Layout</title>
+    <!-- Include global stylesheets and scripts here -->
+    <link rel="stylesheet" href="path/to/your/css/style.css" th:href="@{/css/style.css}" />
+</head>
+<body>
+<header>
+    <!-- Header content (e.g., navigation bar) -->
+    <nav>
+        <ul>
+            <li><a th:href="@{/}">Home</a></li>
+            <li><a th:href="@{/textView}">Text View</a></li>
+            <li><a th:href="@{/uploadText}">Upload Text</a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    <div th:fragment="content">
+        <!-- This is where the content from child templates will be inserted -->
+    </div>
+</main>
+
+<footer>
+    <!-- Footer content -->
+    <p>© 2023 Parallel Texts Reader</p>
+</footer>
+
+<!-- Global scripts -->
+<script src="path/to/your/js/script.js" th:src="@{/js/script.js}"></script>
+</body>
+</html>

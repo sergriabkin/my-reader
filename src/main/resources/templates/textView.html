@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Text View - Parallel Texts Reader</title>
+    <style>
+        .column {
+            float: left;
+            width: 50%;
+            overflow-y: scroll;
+            height: 400px; /* Adjust the height as needed */
+        }
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+</head>
+<body>
+<div th:replace="~{layout :: content}">
+    <h2>Text View</h2>
+    <div class="row">
+        <div class="column text-primary" id="primaryText" th:text="${primaryText}">
+            <!-- Primary text will be displayed here -->
+        </div>
+        <div class="column text-secondary" id="secondaryText" th:text="${secondaryText}">
+            <!-- Secondary text will be displayed here -->
+        </div>
+    </div>
+</div>
+
+<script>
+    // JavaScript for synchronized scrolling
+    const primaryText = document.getElementById('primaryText');
+    const secondaryText = document.getElementById('secondaryText');
+
+    let isSyncingPrimaryScroll = false;
+    let isSyncingSecondaryScroll = false;
+
+    primaryText.onscroll = function() {
+        if (!isSyncingSecondaryScroll) {
+            isSyncingPrimaryScroll = true;
+            secondaryText.scrollTop = this.scrollTop;
+        }
+        isSyncingSecondaryScroll = false;
+    }
+
+    secondaryText.onscroll = function() {
+        if (!isSyncingPrimaryScroll) {
+            isSyncingSecondaryScroll = true;
+            primaryText.scrollTop = this.scrollTop;
+        }
+        isSyncingPrimaryScroll = false;
+    }
+</script>
+</body>
+</html>
